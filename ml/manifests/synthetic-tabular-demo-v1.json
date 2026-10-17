@@ -1,0 +1,34 @@
+{
+  "task_id": "synthetic-tabular-demo",
+  "task_name": "Synthetic cohort group classification",
+  "task_version": "1.0.0",
+  "model_version": "synthetic-tabular-demo-v1",
+  "model_kind": "fixed linear demonstration rule",
+  "intended_use": "Software workflow demonstration using entirely synthetic values; not a clinical model.",
+  "input_modality": "structured",
+  "accepted_modalities": ["structured"],
+  "class_labels": ["Group A", "Group B"],
+  "score_type": "illustrative sigmoid scores (uncalibrated; not clinical probabilities)",
+  "features": [
+    {"name": "marker_a", "label": "Synthetic marker A", "type": "float", "minimum": -5.0, "maximum": 5.0, "unit": "arbitrary", "weight": 0.28},
+    {"name": "marker_b", "label": "Synthetic marker B", "type": "float", "minimum": -5.0, "maximum": 5.0, "unit": "arbitrary", "weight": -0.24},
+    {"name": "marker_c", "label": "Synthetic marker C", "type": "float", "minimum": -5.0, "maximum": 5.0, "unit": "arbitrary", "weight": 0.18}
+  ],
+  "bias": -0.1,
+  "positive_class": "Group B",
+  "decision_threshold": 0.5,
+  "preprocessing": {
+    "version": "identity-v1",
+    "steps": ["UTF-8 CSV parsing", "numeric finite-value check", "manifest range validation", "manifest feature ordering"]
+  },
+  "explainability": {
+    "method": "linear contribution demonstration",
+    "supported": true,
+    "limitations": "Contributions are weight multiplied by input value for this fixed rule. They are not SHAP, causal effects, medical explanations, or feature importance estimates from trained clinical data."
+  },
+  "safety": {
+    "research_only": true,
+    "synthetic_demo_only": true,
+    "clinical_use_allowed": false
+  }
+}

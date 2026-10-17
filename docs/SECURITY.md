@@ -1,0 +1,5 @@
+# Security and privacy notes
+
+This repository is a local research software prototype, not a security-reviewed clinical deployment. Threat controls implemented: token authentication, owner-scoped resource access, random server-generated object IDs, generated storage paths, private local file storage outside the web root, upload size/type/schema/range checks, checksum verification, no-store responses, request IDs, error envelopes without stack traces, no raw input in audit events, optional CORS allowlist, and export/delete authorization.
+
+Important gaps: example token is public; token mapping is local configuration, not SSO; files are not encrypted at rest; no TLS is configured in the app; no automated retention purge or backup deletion; one-process JSON storage is not safe for multi-worker access; no malware scanner or hardened parser sandbox; no rate limiter; no security test suite; no regulatory assessment. Before any hosted or real-data use, obtain institutional, ethics, legal, security, and data-governance approval and replace these controls with managed production equivalents.
